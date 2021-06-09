@@ -50,8 +50,7 @@ To run this quickstart as a standalone project on your local machine:
 . Download the project and extract the archive on your local filesystem or via git clone
 . Navigate to the the resource folder (src/main/resources) and update stripe and database properties
 . Build the project:
-+
-[source,bash,options="nowrap",subs="attributes+"]
++[source,bash,options="nowrap",subs="attributes+"]
 ----
 $ cd PROJECT_DIR
 $ mvn clean package
