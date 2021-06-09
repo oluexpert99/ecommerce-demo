@@ -14,6 +14,7 @@ import java.util.List;
 
 /** User: ayoade_farooq@yahoo.com Date: 09/06/2021 Time: 09:54 */
 @SpringBootTest
+@Sql({"/products.sql"})
 public class ProductServiceTest {
 
   private ProductService productService;
@@ -24,7 +25,7 @@ public class ProductServiceTest {
   }
 
   @Test
-   void testGetAllProductsWithSuccess() {
+  void testGetAllProductsWithSuccess() {
 
     List<ProductDTO> productDTOList = productService.getAllProducts();
 
@@ -32,7 +33,7 @@ public class ProductServiceTest {
   }
 
   @Test()
-   void getProductWithWrongIdShouldFail() {
+  void getProductWithWrongIdShouldFail() {
 
     Assertions.assertThrows(
         ResourceNotFoundException.class,
@@ -43,7 +44,7 @@ public class ProductServiceTest {
 
   @Test
   void testGetProductWithSuccess() {
-      ProductDTO productDTO = productService.getProductById(1L);
+    ProductDTO productDTO = productService.getProductById(1L);
     Assertions.assertNotNull(productDTO);
   }
 }

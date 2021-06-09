@@ -1,9 +1,7 @@
 package com.tinybeans.ecommerce.service.impl;
 
 import com.stripe.Stripe;
-import com.stripe.model.Address;
 import com.stripe.model.Charge;
-import com.stripe.model.PaymentMethod;
 import com.tinybeans.ecommerce.domain.data.OrderStatus;
 import com.tinybeans.ecommerce.domain.data.SalesOrderDTO;
 import com.tinybeans.ecommerce.domain.model.BillingAddress;
@@ -11,9 +9,11 @@ import com.tinybeans.ecommerce.domain.model.SalesOrder;
 import com.tinybeans.ecommerce.domain.repository.BillingAddressRepository;
 import com.tinybeans.ecommerce.domain.repository.SalesOrderRepository;
 import com.tinybeans.ecommerce.exception.PlatformServiceException;
+import com.tinybeans.ecommerce.exception.ValidationException;
 import com.tinybeans.ecommerce.service.ProductService;
 import com.tinybeans.ecommerce.service.SalesOrderService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -72,6 +72,9 @@ public class SalesOrderServiceImpl implements SalesOrderService {
       String city) {
     SalesOrder salesOrder = new SalesOrder();
     try {
+     if (StringUtils.isBlank(token)){
+       throw new PlatformServiceException("error.msg.payment", "Token was not received from Stripe ");
+     }
       Charge charge = chargeNewCard(token, amount.doubleValue());
       salesOrder.setAmount(amount);
       salesOrder.setCustomerId(charge.getBillingDetails().getName());
@@ -94,6 +97,7 @@ public class SalesOrderServiceImpl implements SalesOrderService {
       salesOrderDTO.setTransactionRef(salesOrder.getTransactionRef());
       return salesOrderDTO;
     } catch (Exception e) {
+        log.error(String.format("exception occurred %s", e.getLocalizedMessage()), e);
       throw new PlatformServiceException(
           "error.msg.service", String.format("exception occurred %s", e.getLocalizedMessage()), e);
     }

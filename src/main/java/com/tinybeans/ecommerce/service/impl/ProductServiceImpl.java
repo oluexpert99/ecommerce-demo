@@ -66,6 +66,7 @@ public class ProductServiceImpl implements ProductService {
   private ProductDTO convertEntityToDTO(Product product) {
     ProductDTO productDTO = new ProductDTO();
     BeanUtils.copyProperties(product, productDTO);
+    if (product.getProductImage()!=null)
     productDTO.setProductImage(Base64.getMimeEncoder().encodeToString(product.getProductImage()));
     return productDTO;
   }
