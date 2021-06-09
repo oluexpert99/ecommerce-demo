@@ -6,6 +6,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -28,7 +29,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @SpringBootTest
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
-//@WebMvcTest(controllers = ProductController.class)
 public class ProductControllerTest {
     protected MockMvc mockMvc;
 
@@ -73,6 +73,7 @@ public class ProductControllerTest {
     }
 
     @Test
+    @Sql({"/products.sql"})
     public void testGetProductCheckoutPage() throws Exception {
         ResultActions resultActions = mockMvc.perform(get("/products/{id}/checkout",1))
                 .andExpect(status().isOk())
