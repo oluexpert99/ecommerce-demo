@@ -48,7 +48,7 @@ public class ProductController {
   public String productCheckout(@PathVariable Long id, Model model) {
     ProductDTO product = productService.getProductById(id);
     model.addAttribute("amount", product.getProductPrice() * 100); // In cents
-    model.addAttribute("productId", id); // In cents
+    model.addAttribute("productId", id);
     model.addAttribute("stripePublicKey", stripePublicKey);
     model.addAttribute("product", product);
     return "product-checkout";
