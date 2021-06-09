@@ -38,12 +38,12 @@
    
 
 
-##5 . Requirements
+## 5 . Requirements
 * Java >= 11 
 * MySQL 
 * [Maven 3](https://maven.apache.org)
 
-##6 . Instructions how to run for local development
+## 6 . Instructions how to run for local development
 
 To run this quickstart as a standalone project on your local machine:
 
