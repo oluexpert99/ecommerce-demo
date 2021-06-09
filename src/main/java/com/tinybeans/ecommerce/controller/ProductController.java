@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
 import java.util.List;
 
 /** User: ayoade_farooq@yahoo.com Date: 08/06/2021 Time: 04:06 */
@@ -57,7 +58,7 @@ public class ProductController {
   @PostMapping(value = "/charge")
   public String chargeCard(HttpServletRequest request, Model model) throws Exception {
     String token = request.getParameter("stripeToken");
-    double amount = Double.parseDouble(request.getParameter("amount"));
+    BigDecimal amount = new BigDecimal(request.getParameter("amount"));
     long productId = Long.parseLong(request.getParameter("productId"));
     String zipCode = request.getParameter("zipCode");
     String address = request.getParameter("address");

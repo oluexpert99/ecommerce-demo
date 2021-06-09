@@ -10,6 +10,7 @@ import com.tinybeans.ecommerce.domain.model.BillingAddress;
 import com.tinybeans.ecommerce.domain.model.SalesOrder;
 import com.tinybeans.ecommerce.domain.repository.BillingAddressRepository;
 import com.tinybeans.ecommerce.domain.repository.SalesOrderRepository;
+import com.tinybeans.ecommerce.exception.PlatformServiceException;
 import com.tinybeans.ecommerce.service.ProductService;
 import com.tinybeans.ecommerce.service.SalesOrderService;
 import lombok.extern.slf4j.Slf4j;
@@ -62,7 +63,7 @@ public class SalesOrderServiceImpl implements SalesOrderService {
   @Override
   public SalesOrderDTO createSalesOrder(
       String token,
-      double amount,
+      BigDecimal amount,
       long productId,
       String zipCode,
       String address,
@@ -71,10 +72,8 @@ public class SalesOrderServiceImpl implements SalesOrderService {
       String city) {
     SalesOrder salesOrder = new SalesOrder();
     try {
-      Charge charge = chargeNewCard(token, amount);
-      log.info("charge is " + charge);
-
-      salesOrder.setAmount(new BigDecimal(amount));
+      Charge charge = chargeNewCard(token, amount.doubleValue());
+      salesOrder.setAmount(amount);
       salesOrder.setCustomerId(charge.getBillingDetails().getName());
       salesOrder.setOrderDate(LocalDateTime.now());
       salesOrder.setOrderStatus(OrderStatus.APPROVED);
@@ -95,8 +94,8 @@ public class SalesOrderServiceImpl implements SalesOrderService {
       salesOrderDTO.setTransactionRef(salesOrder.getTransactionRef());
       return salesOrderDTO;
     } catch (Exception e) {
-      e.printStackTrace();
-      return null;
+      throw new PlatformServiceException(
+          "error.msg.service", String.format("exception occurred %s", e.getLocalizedMessage()), e);
     }
   }
 }

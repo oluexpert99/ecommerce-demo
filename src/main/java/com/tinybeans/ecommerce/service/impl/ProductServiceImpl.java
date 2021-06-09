@@ -56,8 +56,7 @@ public class ProductServiceImpl implements ProductService {
                     String.format("product with id %s cannot be found ", productId)));
   }
 
-  @Override
-  public void updateAvailableProductQuantity(Long productId, Long soldQuantity) {}
+
 
   private List<ProductDTO> convertEntityListToDTO(List<Product> productList) {
 

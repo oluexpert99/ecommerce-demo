@@ -18,5 +18,4 @@ public interface ProductService {
 
   Product getProduct(Long productId);
 
-  void updateAvailableProductQuantity(Long productId, Long soldQuantity);
 }
