@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Sample Demo</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{~/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link th:href="@{~/css/mdb.min.css}" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link th:href="@{~/css/style.min.css}" rel="stylesheet">
+</head>
+
+<body class="grey lighten-3">
+
+<!-- Navbar -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+    <div class="container">
+
+        <!-- Brand -->
+        <a class="navbar-brand waves-effect" th:href="@{/}" >
+            <strong class="blue-text">ABC E-commerce</strong>
+        </a>
+
+        <!-- Collapse -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <!-- Left -->
+
+
+
+        </div>
+
+    </div>
+</nav>
+<!-- Navbar -->
+
+<!--Main layout-->
+<!--Main layout-->
+<main class="mt-5 pt-4">
+    <div class="container wow fadeIn">
+
+        <!-- Heading -->
+        <h2 class="my-5 h2 text-center">Confirmation</h2>
+
+        <!--Grid row-->
+
+        <div class="row">
+            <div class="view" >
+                <img th:src="@{~/img/success.png}"
+                     class="card-img-top"
+                     alt="">
+                <a>
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+
+            <!--Grid column-->
+            <div class="col-md-8 mb-4">
+
+                <!--Card-->
+                <div class="card">
+
+                    <div class="card-body text-center">
+                        <!--Category & Title-->
+
+                            <h5> your order ID is  <span th:text="${orderId}"> XYZ</span></h5>
+                            <h5 > Your payment Ref is <span th:text="${transactionRef}">123456789TFG</span></h5>
+
+                        <h5>
+                            <strong>
+
+                            </strong>
+                        </h5>
+
+                    </div>
+
+                </div>
+                <!--/.Card-->
+
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-md-4 mb-4">
+
+
+
+
+
+            </div>
+            <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+    </div>
+</main>
+<!--Main layout-->
+
+<!--Main layout-->
+
+<!--Footer-->
+<footer class="page-footer text-center font-small mt-4 wow fadeIn">
+    <hr class="my-4">
+
+
+</footer>
+<!--/.Footer-->
+
+<!-- SCRIPTS -->
+<!-- JQuery -->
+<script th:src="@{~/js/jquery-3.4.1.min.js}"></script>
+<!-- Bootstrap tooltips -->
+<script th:src="@{~/js/popper.min.js}"></script>
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{~/js/bootstrap.min.js}"></script>
+<!-- MDB core JavaScript -->
+<script th:src="@{~/js/mdb.min.js}"></script>
+<script src="https://js.stripe.com/v3/"></script>
+<!-- Initializations -->
+<script type="text/javascript">
+
+    // Animations initialization
+    new WOW().init();
+
+</script>
+</body>
+
+</html>
