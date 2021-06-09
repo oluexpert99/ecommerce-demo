@@ -51,14 +51,13 @@ To run this quickstart as a standalone project on your local machine:
 . Navigate to the the resource folder (src/main/resources) and update stripe and database properties
 . Build the project:
 
-+
-[source,bash,options="nowrap",subs="attributes+"]
-----
+ +
+ [source,bash,options="nowrap",subs="attributes+"]
+  ----
 $ cd PROJECT_DIR
 $ mvn clean package
 ----
 . Run the service:
-
 +
 [source,bash,options="nowrap",subs="attributes+"]
 ----
